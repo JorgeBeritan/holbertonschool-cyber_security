@@ -1,2 +1,2 @@
 #!/bin/bash
-whois $1 | grep -E '^(Registrant|Admin|Tech)' > $1.csv
+whois $1 | grep -E '^(Registrant|Admin|Tech)' | sed 's/: /,/g' > $1.csv
