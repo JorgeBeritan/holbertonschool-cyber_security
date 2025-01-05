@@ -1,1 +1,1 @@
-icmp[0] == 3 and icmp[1] == 3
+ip.proto == 1
