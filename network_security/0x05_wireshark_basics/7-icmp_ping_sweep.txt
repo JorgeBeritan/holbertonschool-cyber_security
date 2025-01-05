@@ -1,1 +1,1 @@
-icmp and icmp.type == 8
+icmp and icmp.type == 8 icmp.type == 0
