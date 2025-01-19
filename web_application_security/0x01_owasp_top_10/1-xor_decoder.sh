@@ -5,7 +5,7 @@ resultado=""
 
 if [[ "$word" =~ \{xor\} ]]; then
   clean_word="${word#\{xor\}}"
-  bword=$(echo -n "$clean_word" | base64 -d )
+  bword=$(echo -n "$clean_word" | base64 -d 2>/dev/null)
   
   for (( i=0; i<${#bword}; i++)); do
     char="${bword:i:1}"
