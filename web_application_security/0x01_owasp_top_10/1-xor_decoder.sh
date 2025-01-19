@@ -1,23 +1,18 @@
 #!/bin/bash
-HASH="$1"
-KEY="242b2c2d"  # Cambiar según la clave XOR usada por WebSphere
 
-# Decodificar el hash usando XOR
-decode_xor() {
-  local encoded=$1
-  local key=$2
-  local decoded=""
+word=$1
+resultado=""
 
-  # Convertir los datos codificados y la clave en arrays de bytes
-  for ((i = 0; i < ${#encoded}; i += 2)); do
-    byte=${encoded:i:2}
-    key_byte=${key:$((i % ${#key})):2}
-    xor_byte=$(printf "%x" "$((0x$byte ^ 0x$key_byte))")
-    decoded+=$(printf "\\x$xor_byte")
+if [[ "$word" =~ \{xor\} ]]; then
+  clean_word="${word#\{xor\}}"
+  bword=$(echo -n "$clean_word" | base64 -d )
+  
+  for (( i=0; i<${#bword}; i++)); do
+    char="${bword:i:1}"
+    ascii=$(printf "%d" "'$char'")
+    xor=$((ascii ^ 95))
+    new_char=$(printf "\\$(printf '%03o' "$xor")")
+    resultado+="$new_char"
   done
-
-  echo -e "$decoded"
-}
-
-RESULT=$(decode_xor "$HASH" "$KEY")
-echo "Resultado decodificado: $RESULT"
+  echo "$resultado"
+fi
