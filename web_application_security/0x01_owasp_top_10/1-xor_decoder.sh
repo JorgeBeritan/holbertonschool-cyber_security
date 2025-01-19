@@ -1,21 +1,19 @@
 #!/bin/bash
-
 word=$1
 resultado=""
-
 if [[ "$word" =~ \{xor\} ]]; then
   clean_word="${word#\{xor\}}"
-  # Decodificar con Base64 y eliminar caracteres nulos
-  bword=$(echo -n "$clean_word" | base64 -d 2>/dev/null | tr -d '\0')
 
+  bword=$(echo -n "$clean_word" | base64 -d | od -An -tx1 -v | tr -d ' \n')
   if [[ -n "$bword" ]]; then
-    for (( i=0; i<${#bword}; i++)); do
-      char="${bword:i:1}"
-      ascii=$(printf "%d" "'$char'")
+
+    for ((i=0; i<${#bword}; i+=2)); do
+      hex="${bword:i:2}"
+
+      ascii=$((16#$hex))
       xor=$((ascii ^ 95))
-      # Eliminar caracteres nulos antes de la conversión a octal
-      new_char=$(printf "%03o" "$xor" | tr -d '\0')
-      new_char=$(printf "\\$new_char") 
+
+      printf -v new_char "\\$(printf '%03o' "$xor")"
       resultado+="$new_char"
     done
     echo "$resultado"
