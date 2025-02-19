@@ -1,2 +1,2 @@
 #!/bin/bash
-find $1 -perm +s -type f 2>/dev/null
+find $1 -perm +s -type f -exec sh -c 2>/dev/null
