@@ -1,2 +1,2 @@
 #!/bin/bash
-getsebool -a
+semanage boolean -l
