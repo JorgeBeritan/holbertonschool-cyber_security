@@ -1,2 +1,2 @@
 #!/bin/bash
-iptables -L -v
+iptables -L -v -n --line-numbers
