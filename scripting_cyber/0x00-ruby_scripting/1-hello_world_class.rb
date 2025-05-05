@@ -6,6 +6,3 @@ class HelloWorld
         puts "#{@message}"
     end
 end
-
-hello = HelloWorld.new
-hello.print_hello
