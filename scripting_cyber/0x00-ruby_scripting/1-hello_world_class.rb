@@ -1,6 +1,6 @@
 class HelloWorld
     def initialize
-        @message = "Hello World"
+        @message = "Hello, World!"
     end
     def print_hello
         puts "#{@message}"
