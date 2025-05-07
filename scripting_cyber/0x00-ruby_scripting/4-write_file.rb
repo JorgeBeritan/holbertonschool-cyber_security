@@ -2,14 +2,19 @@
 
 require 'json'
 
-def merge_json_files(file1_path, file2_path)
-    readFile = File.read(file1_path)
-    data = JSON.parse(readFile)
-    json_string = JSON.generate(data)
-    File.open(file2_path, 'w') do |file|
-        file.write(json_string)
+def merge_json_files(source_file, destination_file)
+    destination_content = File.read(destination_file)
+    destination_data = JSON.parse(destination_content)
+
+    source_content = File.read(source_file)
+    source_data = JSON.parse(source_content)
+
+    merged_data = destination_data.concat(source_data)
+    merged_json_string = JSON.generate(merged_data)
+
+    File.open(destination_file, 'w') do |file|
+        file.write(merged_json_string)
     end
 end
-
 
     
