@@ -2,7 +2,7 @@
 
 require "json"
 
-def count_user_id(path)
+def count_user_ids(path)
     user_counts = {}
     contenido_json = File.read(path)
 
