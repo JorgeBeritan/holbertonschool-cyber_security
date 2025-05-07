@@ -15,6 +15,7 @@ def merge_json_files(source_file, destination_file)
     File.open(destination_file, 'w') do |file|
         file.write(merged_json_string)
     end
+    puts "Merged JSON weitten to file.json"
 end
 
     
