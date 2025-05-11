@@ -4,12 +4,15 @@ require 'open-uri'
 require 'fileutils'
 require 'uri'
 
-def download_file(url_string, local_file_path)
+def download_file
     
-    if ARGV.lenght != 2
+    if ARGV.length != 2
         puts "Usage: #{File.basename($0)} URL LOCAL_FILE_PATH"
         exit 1
     end
+
+    url_string = ARGV[0]
+    local_file_path = ARGV[1]
 
     uri = URI.parse(url_string)
     unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
@@ -29,3 +32,5 @@ def download_file(url_string, local_file_path)
 
     puts "File downloaded and saved to #{local_file_path}"
 end
+
+download_file
