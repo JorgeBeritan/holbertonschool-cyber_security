@@ -17,17 +17,21 @@ def crack_password
         exit 1
     end
 
-    File.open(dictionary_file_path) do |word|
-        word.strip!
+    File.open(dictionary_file_path, 'r') do |file|
+        file.each_line do |word|
+            clean_word = word.strip
+            next if clean_word.empty?
 
-        hash = Digest::SHA256.hexdigest(word)
+            current_word_hash = Digest::SHA256.hexdigest(clean_word)
 
-        if hash == hashed_password_to_crack
-            puts "Password found: #{word}"
-            exit 0
+            if current_word_hash == hashed_password_to_crack
+                puts "Password found: #{clean_word}"
+                exit 0
+            end
         end
-    end
-    
+    end 
     puts "Password not found in dictionary."
     exit 1
 end
+
+crack_password
