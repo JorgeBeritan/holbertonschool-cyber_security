@@ -22,13 +22,13 @@ def cli
     options = {}
 
     parser = OptionParser.new do |opts|
-        opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
+        opts.banner = "Usage: cli.rb [options]"
 
         opts.on("-a", "--add TASK", "Add a new task") do |task|
             options[:add] = task
         end
 
-        opts.on("-l", "--list", "List all task") do
+        opts.on("-l", "--list", "List all tasks") do
             options[:list] = true
         end
 
