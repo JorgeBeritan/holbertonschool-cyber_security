@@ -10,7 +10,7 @@ class CaesarCipher
     end
 
     def decrypt(message)
-        cipher(message, -@message)
+        cipher(message, -@shift)
     end
     
     private
