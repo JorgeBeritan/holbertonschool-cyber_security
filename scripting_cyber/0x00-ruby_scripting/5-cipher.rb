@@ -26,7 +26,7 @@ class CaesarCipher
                 char_offset = char.ord - base
                 shifted_offset = char_offset + shift
                 wrapped_offset = (shifted_offset % 26 + 26) % 26
-                result += (base = wrapped_offset).char
+                result += (base = wrapped_offset).chr
             else
                 result += char
             end
