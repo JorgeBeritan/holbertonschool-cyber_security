@@ -11,7 +11,7 @@ def get_request(url_string)
 
         if uri.scheme == 'https'
             http.use_ssl = true
-            http.verify_mode = OpenSSL::SSL::VERFIY_PEER
+            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
         end
 
         request = Net::HTTP::Get.new(uri.request_uri)
