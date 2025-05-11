@@ -7,7 +7,7 @@ def cli
 
     read_task_from_file = ->(file_path) do
         if File.exist?(file_path)
-            File.readlines(file_path).map(&:champ)
+            File.readlines(file_path).map(&:chomp)
         else
             []
         end
