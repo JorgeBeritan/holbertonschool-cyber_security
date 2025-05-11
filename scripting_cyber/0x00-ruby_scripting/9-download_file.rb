@@ -5,6 +5,12 @@ require 'fileutils'
 require 'uri'
 
 def download_file(url_string, local_file_path)
+    
+    if ARGV.lenght != 2
+        puts "Usage: #{File.basename($0)} URL LOCAL_FILE_PATH"
+        exit 1
+    end
+
     uri = URI.parse(url_string)
     unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
         puts "Error: Invalid URL provided. Please use http or https"
