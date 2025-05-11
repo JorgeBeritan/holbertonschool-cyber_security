@@ -7,7 +7,7 @@ require 'uri'
 def post_request(url_string, body_params = {})
     begin
         uri = URI.parse(url_string)
-        http = Net::HTTP.new(rui.host, uri.port)
+        http = Net::HTTP.new(uri.host, uri.port)
 
         if uri.scheme == 'https'
             http.use_ssl = true
