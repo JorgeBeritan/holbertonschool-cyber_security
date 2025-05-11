@@ -15,7 +15,7 @@ class CaesarCipher
     
     private
 
-    def cipher(message, shift_amount)
+    def cipher(message, shift)
         result = ""
 
         message.each_char do |char|
@@ -24,7 +24,7 @@ class CaesarCipher
                 base = is_uppercase ? 65 : 97
 
                 char_offset = char.ord - base
-                shifted_offset = char_offset + shift_amount
+                shifted_offset = char_offset + shift
                 wrapped_offset = (shifted_offset % 26 + 26) % 26
                 result += (base = wrapped_offset).char
             else
