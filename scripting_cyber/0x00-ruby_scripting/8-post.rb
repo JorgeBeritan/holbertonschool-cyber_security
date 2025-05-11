@@ -11,11 +11,11 @@ def post_request(url_string, body_params = {})
 
         if uri.scheme == 'https'
             http.use_ssl = true
-            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         end
 
         request = Net::HTTP::Post.new(uri.request_uri)
-        request['Content-Type'] = 'application/json: charset=UTF-8'
+        request['Content-Type'] = 'application/json'
         request.body = body_params.to_json
 
         response = http.request(request)
