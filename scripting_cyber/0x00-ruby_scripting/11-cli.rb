@@ -32,7 +32,7 @@ def cli
             options[:list] = true
         end
 
-        opts.on("-r", "--remove INDEX", Integer, "Remove a task by index (1-based)") do |index|
+        opts.on("-r", "--remove INDEX", Integer, "Remove a task by index") do |index|
             options[:remove] = index
         end
 
